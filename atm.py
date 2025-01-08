@@ -5,6 +5,13 @@
 
 # ======
 
+# =출금=
+# 출금 요청한 금액을 받는 변수: withdraw_amount
+# 출금을 요청한 금액을 balance 변수에서 뺀 결과가 들어가도록 코드를 작성해주세요.
+# 영주증에 다음 순서로 값이 들어가도록 코드를 만들어주세요 -> ()"출금", withdraw_amount, balance) 순으로 데이터 넣어주세요.
+# 가지고 있는 금액보다 출금을 원하는 금액 클때 가지고 있는 금액만 출금되도록 코드를 작성해주세요.
+
+# =입금=
 # 입금한 금액을 받는 변수 : deposit_amount
 # 입금된 금액은 balance 변수에 추가되도록 코드를 작성해주세요.
 # 영주증에 다음 순서로 값이 들어가도록 코드를 만들어주세요 -> "입금", 입금 요청액, 총액 순으로 데이터 넣어주세요.
@@ -28,11 +35,34 @@ while True:
         depositAmount = int(input("입금 금액을 입력해주세요: > "))
         balance += depositAmount
 
-        receipts.append(("입금", depositAmount, balance))
+        receipts.append(("입금", f"입금 요청액: {depositAmount}", f"현재 잔액: {balance}"))
         print('')
-        print(f'입금하신 금액은 {depositAmount}원이고, 현재 잔액은 {balance}원 입니다.');
-
-
+        print(f'입금하신 금액은 {depositAmount}원이고, 현재 잔액은 {balance}원 입니다.')
         # print(f'입금 요청액: {goldInput}, 총액: {balance}')
     
+    # =출금=
+# 출금 요청한 금액을 받는 변수: withdraw_amount
+# 출금을 요청한 금액을 balance 변수에서 뺀 결과가 들어가도록 코드를 작성해주세요.
+# 영주증에 다음 순서로 값이 들어가도록 코드를 만들어주세요 -> ()"출금", withdraw_amount, balance) 순으로 데이터 넣어주세요.
+# 가지고 있는 금액보다 출금을 원하는 금액 클때 가지고 있는 금액만 출금되도록 코드를 작성해주세요.
+    # 출금
+    if '2' in inputNumber:
+        print('')
+        withdraw_amount = int(input("출금 금액을 입력해주세요: > "))
+        
+        # if balance >= withdraw_amount:
+        #     balance -= withdraw_amount
+        #     receipts.append(("출금", withdraw_amount, balance))
+        #     print(f'출금하신 금액은 {withdraw_amount}원이고, 현재 잔액은 {balance}원 입니다.')
+        # else:
+        #     print('잔액이 부족합니다.')
+        
+        withdraw_amount = min(balance, withdraw_amount)
+        balance -= withdraw_amount
+        receipts.append(("출금", f"출금 요청액: {withdraw_amount}", f"현재 잔액: {balance}"))
+        print(f'출금하신 금액은 {withdraw_amount}원이고, 현재 잔액은 {balance}원 입니다.')
+        
 
+
+
+print(f'list : {receipts}')
