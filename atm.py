@@ -3,6 +3,13 @@
 # while문을 이용해서 입금, 출금, 영수증 보기, 종료라는 기능이 종료라는 버튼을 누르기 전까지 계속해서 노출되도록 만들어주세요
 # 종료를 누르면 서비스를 종료한다는 메시지를 출력하고 현재 잔액을 보여주세요
 
+# 
+
+# input-validation 
+# 입력 검증 및 에러 처리 추가
+# 잘못된 입력 값(숫자가 아닌값, 음수 값 등)을 처리하도록 기능을 추가해주세요
+# 유효하지 않은 메뉴 선택 시 경고 메시지 또는 사용방법 재안내를 해주세요
+
 # ======
 
 # =출금=
@@ -32,13 +39,17 @@ while True:
     # 입금
     if '1' in inputNumber:
         print()
-        depositAmount = int(input("입금 금액을 입력해주세요: > "))
-        balance += depositAmount
-
-        receipts.append(("입금", f"입금 요청액: {depositAmount}", f"현재 잔액: {balance}"))
-        print('')
-        print(f'입금하신 금액은 {depositAmount}원이고, 현재 잔액은 {balance}원 입니다.')
-        # print(f'입금 요청액: {goldInput}, 총액: {balance}')
+        depositAmount = input("입금 금액을 입력해주세요: > ")
+        if depositAmount.isdigit():
+            depositAmount = int(depositAmount)
+            if depositAmount > 0:
+                balance += depositAmount
+                receipts.append(("입금", f"입금 요청액: {depositAmount}", f"현재 잔액: {balance}"))
+                print('')
+                print(f'입금하신 금액은 {depositAmount}원이고, 현재 잔액은 {balance}원 입니다.')
+                # print(f'입금 요청액: {goldInput}, 총액: {balance}')
+        else:
+            print('입금한 금액을 숫자 형태와 음수가 아닌 값을 입력해주세요')
     
     # =출금=
 # 출금 요청한 금액을 받는 변수: withdraw_amount
