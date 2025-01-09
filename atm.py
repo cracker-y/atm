@@ -73,7 +73,14 @@ while True:
         receipts.append(("출금", f"출금 요청액: {withdraw_amount}", f"현재 잔액: {balance}"))
         print(f'출금하신 금액은 {withdraw_amount}원이고, 현재 잔액은 {balance}원 입니다.')
         
+    if '3' in inputNumber:
+        if receipts:
+            print('===영수증===')
+            for i in receipts:
+                print(f'{i[1]} | {i[2]}원')
+            print()
+        else:
+            print('영수증 내역이 없습니다.')
 
 
-
-print(f'list : {receipts}')
+# print(f'list : {receipts}')
